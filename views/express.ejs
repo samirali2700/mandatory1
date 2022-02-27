@@ -1,0 +1,77 @@
+
+        <!doctype html>
+        <html lang="en">
+            <%- include('./partials/head.ejs') %>
+            <body >
+                <%- include('./partials/nav.ejs') %>
+                <div class="w3-container w3-border w3-auto w3-mobile" style="max-width:1150px;">
+                    <div class = "w3-container w3-section">
+                        <h1>Express web Framework</h1>
+                        <p>Express is a easy to use web framework for NodeJs, handling the server and routes becomes easier with express</p>
+                    </div>
+                    
+                    <div class = "w3-panel w3-card w3-light-grey w3-margin w3-padding">
+                        <h2>Installation</h2>
+                        <p>To use express in your nodeJs project, express should first be installed</p>
+                        <p>express can be install with npm (node package manager) like this: </p>
+                        <div class = "w3-code"><code>npm install express</code></div> 
+                    </div> 
+                    <div class="w3-panel w3-card w3-light-grey w3-margin w3-padding">
+                        <h2>How to use</h2>
+                        <p>To define and require installed package</p>
+                        <div class = "w3-code"><code>const express = require('express');</code><br>
+                                            <code>const app = express();</code>
+                        </div>
+                        <div class="w3-panel  w3-margin">
+                            <h2>App Listener</h2>
+                            <p>For express app to function, defining a port for the app to listen to is a must</p>
+                            <div class = "w3-code"><code>app.listen(<b>PORT</b>)</code></div>
+                            <p>In some situation a predefined port is not needed, but instead app will listen to the available port</p>
+                            <div class = "w3-code">
+                                <code>app.listen(process.env.PORT)</code>
+                            </div>
+                        </div>
+                        <div class="w3-panel  w3-margin">
+                            <h2>Middleware for requests</h2>
+                            <p>To define an endpoints</p>
+                            <div class = "w3-code"><code>app.get('/', (request, response) => {<br><br>
+                                                            <span class="w3-cursive">//obtain request information from request parameter</span><br>
+                                                            <span class="w3-cursive">//return a response with response parameter</span><br><br>
+
+                                                            response.statusCode(200).send('Working Fine');<br>     
+                                                            <span class="w3-cursive">or</span>  <br>                
+                                                            response.sendFile('./fileName', {root: __dirname});
+
+                                                       <br> }</code>
+                            </div>
+                        </div>
+                        <div class="w3-panel  w3-margin">
+                            <h2>Public Files</h2>
+                            <p>To make files available to the client with express</p>
+                            <div class = "w3-code"><code>app.use(express.static('Public'))</code></div>
+                            <p class="w3-section">'Public is the folder name, which is on root level'</p>
+                         
+                        </div>
+                    </div>
+                    <div class="w3-panel w3-card w3-light-grey w3-margin">
+                        <h2>Example</h2>
+                        <p>A simple App with basic routing</p>
+                        <div class = "w3-code">
+                            <code>
+                                const express = requie('express');<br>
+                                const app = express();<br><br>
+
+                                const server = app.listen(process.env.PORT || 5000);<br><br>
+
+                                app.get('/', (request,response) => { //callback function with to parameter<br>
+                                    <span class="w3-margin-left">res.send("hello World!");</span><br>
+                                });
+
+
+                            </code>
+                        </div>                
+                    </div>  
+                </div> 
+                <%- include('./partials/footer.ejs') %>      
+            </body>
+        </html>

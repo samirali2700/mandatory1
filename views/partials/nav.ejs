@@ -1,0 +1,16 @@
+
+    <div class="w3-bar w3-black w3-mobile">
+                <a class="w3-bar-item w3-button" href="/">Home</a>
+                <a class="w3-bar-item w3-button" href="/express">Express</a>
+                <a class="w3-bar-item w3-button" href="/npm">Npm</a>
+                <a class="w3-bar-item w3-button" href="/extra" >Extra</a>
+    </div>
+    <script>
+        const as = document.querySelectorAll('.w3-bar-item');
+        for(let i = 0; i < as.length; i++){
+           as[i].classList.remove('w3-green')
+           if(as[i].innerHTML === "<%= title %>"){
+               as[i].classList.add('w3-green');
+           }
+        }
+    </script>

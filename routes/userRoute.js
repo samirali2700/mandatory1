@@ -1,16 +1,22 @@
+
 const express = require('express');
 const Router = express.Router();
 
-const User = require('../models/user');
+const userController = require('../controllers/userController');
 
 
-Router.get('/', (req,res) => {
-    res.render('./user/index', {title: 'User'});
-})
-Router.get('/:id', (req,res) => {})
 
-Router.post('/', (req,res) => {})
-Router.delete('/:id', (req,res) => {})
-Router.put('/:', (req,res) => {})
+Router.get('/', userController.user_index);
+
+
+Router.get('/add', userController.user_create_get);
+Router.get('/:id', userController.user_details);
+
+Router.post('/add', userController.user_create_post);
+
+Router.put('/update/:id', userController.user_update);
+
+Router.delete('/delete/:id', userController.user_delete);
+
 
 module.exports = Router;

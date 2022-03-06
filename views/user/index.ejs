@@ -6,10 +6,84 @@
                 <%- include('../partials/nav.ejs') %>
                 <div class="w3-container  w3-auto w3-mobile" style="padding:0; max-width:1150px; min-height:100vh;">
                    
-                    <div class="w3-auto w3-container w3-section w3-center w3-display-middle" >
-                      <h1 class="w3-cursive ">User Mangement</h1>
-                          <p></p>
+                    <div class="w3-auto w3-container w3-section " >
+                      <h1 class="w3-cursive w3-center">User Mangement</h1>
+                        
+                      <div class="w3-margin-top">
+                        <button onclick="document.getElementById('aUser').style.display='block'" class=" w3-block w3-button w3-blue">Add User</button>
+                       
+
+                        <div id="aUser" class="w3-modal">
+                          <div class="w3-modal-content w3-animate-top w3-card-4">
+
+                                <header class="w3-container w3-blue"> 
+                                <span onclick="document.getElementById('aUser').style.display='none'"class="w3-button w3-hover-blue w3-display-topright">&times;</span>
+                                <h2>Add User</h2>
+                                </header>
+                                <div class="w3-container w3-section">
+                                    <form class="w3-container w3-section" action="/user/add" method="POST">
+                                        <input class="w3-block w3-container w3-section" style="height:50px;" name="firstname" type="text" placeholder="Firstname">
+                                        <input class="w3-block w3-container w3-section " style="height:50px;" name="lastname"  type="text" placeholder="Lastname">         
+                                        <button class="w3-button w3-block w3-blue" type="submit">Add</button>      
+                                    </form>
+                                </div>
+                                
+
+                          </div>
+                        </div>
+
+                       
+
+
+
+                        <div class="w3-block w3-white w3-border w3-padding">
+                            <h1 >Users</h2>
+                        </div>
+                        <ul class="w3-ul w3-border w3-card-4 " >
+                            
+                            <%  if((users.length) > 0){ %>
+                                <% users.forEach(user => { %>
+                                <li class="">
+                                    <div class="" style="display: flex; align-items: center; column-gap:25px;">
+
+                                        <div class="w3-block w3-half" style="width: fit-content;">
+                                            <img class= "w3-circle w3-hide-small" style="width:80px;" src="https://picsum.photos/200"/>
+                                        </div>
+                                        
+                                        <div class="w3-block"  >
+                                            <a class="" href="/user/update" style="text-decoration: none; cursor:pointer;">
+                                            <span class="w3-large"><%=user.firstname%></span> <br>
+                                            <span ><%=user.lastname %></span>
+                                            </a>
+                                            
+                                        </div>
+                                                <% const date = user.createdAt.toLocaleDateString()  %>
+                                        <span><%= date %></span>
+                                        <div class="w3-block">
+                                            <span onclick="deleteUser('<%= user.id %>')" class=" w3-button w3-white w3-large w3-hover-red w3-circle" style="float:right;">x</span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            <%});} else{ %>
+
+                             <li><p>There are no user(s) found</p></li>
+                             <%}%>
+
+                                <script>
+                                    async function deleteUser(id){
+                                        console.log("running")
+                                        await fetch(`/user/delete/${id}`, {method:'DELETE'})
+                                        .then((result) => result.json())
+                                        .then((data) => window.location.href = data.redirect)
+                                        .catch((err) => console.warn(err));
+                                    }
+                                </script>
+                            
+                        </ul>
+                      </div>
                   </div>
+                
                 </div> 
                 <%- include('../partials/footer.ejs') %>      
             </body>

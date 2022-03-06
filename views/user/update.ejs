@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+    <body>
+        <%- include('../partials/nav.ejs') %>
+
+
+        <div class="w3-container w3-card-4 w3-display-middle" style="width:35%;">
+        
+                <form class="w3-panel w3-section" action="/user/update/<%=user.id%>">
+                <input type="hidden" name="id" value="<%=user.id%>">
+                <input class="w3-input  w3-section w3-padding w3-border w3-round" type="text" value ="<%=user.firstname %>" name="firstname">
+                <input class="w3-input  w3-section w3-padding w3-border w3-round" type="text" value ="<%=user.lastname %>" name="lastname">
+                <input class="w3-input  w3-section w3-padding w3-border w3-round" type="text" value ="<%=user.username %>" name="username">
+                <input class="w3-input  w3-section w3-padding w3-border w3-round" type="password" value ="<%=user.password %>" name="password">
+
+                    <input class="w3-button w3-block w3-blue" type="submit" value="Update">
+            </div>
+
+        </div>
+        <script>
+            
+            document.querySelector('form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                const form = event.currentTarget;
+
+                const formData = new FormData(form);
+                const plainData = Object.fromEntries(formData.entries());
+                const options = {
+                    method: 'PATCH',
+                    headers:{
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(plainData)
+                }
+
+                fetch(form.action, options)
+                .then(response => response.json())
+                .then((redirect) => window.location.href = redirect.redirect)
+                .catch((err) => console.warn(`user_update_patch frontend failed. ${err}`));
+
+            })
+        </script>
+
+    </body>
+</html>

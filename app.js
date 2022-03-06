@@ -2,7 +2,7 @@
 //Express App
 const express = require('express');
 const app = express();
-
+const bodyParser = require('body-parser');
 
 //User Route
 const userRoute = require('./routes/userRoute');
@@ -27,9 +27,15 @@ app.set('view engine','ejs');
 
 //set a public folder, everything in folder are available from frontend
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
-
+app.use((req,res, next) => {
+    
+    next();
+});
 app.get('/', (req,res) => {
     res.render('index', {title: 'Home'});
 });
@@ -47,10 +53,5 @@ app.use('/user',userRoute);
 
 app.use((req,res) => {res.render('404',{title: '404'});});
 
-
-/*app.get('/add-note', (req,res) => {
-    
-})
-*/
 
 

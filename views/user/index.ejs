@@ -32,9 +32,6 @@
                           </div>
                         </div>
 
-                       
-
-
 
                         <div class="w3-block w3-white w3-border w3-padding">
                             <h1 >Users</h2>
@@ -51,14 +48,14 @@
                                         </div>
                                         
                                         <div class="w3-block"  >
-                                            <a class="" href="/user/update" style="text-decoration: none; cursor:pointer;">
+                                            <a class="" href="/user/update/<%= user.id %>" style="text-decoration: none; cursor:pointer;">
                                             <span class="w3-large"><%=user.firstname%></span> <br>
                                             <span ><%=user.lastname %></span>
                                             </a>
                                             
                                         </div>
                                                 <% const date = user.createdAt.toLocaleDateString()  %>
-                                        <span><%= date %></span>
+                                        <span>Created: <%= date %></span>
                                         <div class="w3-block">
                                             <span onclick="deleteUser('<%= user.id %>')" class=" w3-button w3-white w3-large w3-hover-red w3-circle" style="float:right;">x</span>
                                         </div>
@@ -72,7 +69,7 @@
 
                                 <script>
                                     async function deleteUser(id){
-                                        console.log("running")
+                                        
                                         await fetch(`/user/delete/${id}`, {method:'DELETE'})
                                         .then((result) => result.json())
                                         .then((data) => window.location.href = data.redirect)

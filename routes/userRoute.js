@@ -10,14 +10,13 @@ const userController = require('../controllers/userController');
 Router.get('/', userController.user_index);
 
 Router.get('/add', userController.user_create_get);
-Router.get('/:id', userController.user_details);
-
 Router.post('/add', userController.user_create_post);
 
-Router.put('/update/:id', userController.user_update);
-Router.patch('/update/:id', userController.user_update);
-
+Router.get('/update/:id', userController.user_update_get);
+Router.patch('/update/:id', userController.user_update_patch);
 Router.delete('/delete/:id', userController.user_delete);
+
+Router.get('/:id', userController.user_details);
 
 //export router 
 module.exports = Router;

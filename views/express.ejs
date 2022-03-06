@@ -2,22 +2,38 @@
         <!doctype html>
         <html lang="en">
             <%- include('./partials/head.ejs') %>
+            <style>
+                h1, h2{
+                    user-select: none;
+                    cursor:pointer;
+                    text-align: left;
+                }
+                .retracted{
+                    height:75px;
+                    overflow:hidden;
+                   
+                    padding:0;
+                }
+                
+            </style>
             <body >
                 <%- include('./partials/nav.ejs') %>
-                <div class="w3-container w3-border w3-auto w3-mobile" style="max-width:1150px;">
+                <div class="w3-container w3-border w3-auto w3-mobile " style="max-width:1150px; min-height:73vh;">
                     <div class = "w3-container w3-section">
                         <h1>Express web Framework</h1>
                         <p>Express is a easy to use web framework for NodeJs, handling the server and routes becomes easier with express</p>
                     </div>
                     
-                    <div class = "w3-panel w3-card w3-light-grey w3-margin w3-padding" >
-                        <h2>Installation</h2>
+                    <div class ="w3-panel w3-card w3-light-grey w3-margin w3-padding retracted"  id = 'in'>
+                        <input type="hidden" value="retracted" >
+                        <h2 class="w3-block w3-container" onclick="toggleDiv('in')" >Installation</h2>
                         <p>To use express in your nodeJs project, express should first be installed</p>
                         <p>express can be install with npm (node package manager) like this: </p>
                         <div class = "w3-code"><code>npm install express</code></div> 
                     </div> 
-                    <div class="w3-panel w3-card w3-light-grey w3-margin w3-padding">
-                        <h2>How to use</h2>
+                    <div class="w3-panel w3-card w3-light-grey w3-margin w3-padding retracted" id="htu" >
+                        <input type="hidden" value="retracted">
+                        <h2 class="w3-block w3-container" onclick="toggleDiv('htu')">How to use</h2>
                         <p>To define and require installed package</p>
                         <div class = "w3-code"><code>const express = require('express');</code><br>
                                             <code>const app = express();</code>
@@ -81,8 +97,12 @@
 
                         </div>
                     </div>
-                    <div class="w3-panel w3-card w3-light-grey w3-margin">
-                            <h2>Routes</h2>
+                    <div class="w3-panel w3-card w3-light-grey w3-margin w3-padding retracted" id="rs">
+                        <input type="hidden" value = "retracted">
+                           
+                            <h2 class="w3-block w3-container" onclick="toggleDiv('rs')" >Routes</h2> 
+                           
+                            
                             <p>It is possible to seperate different purpose routes,
                                 for the sake of readability and cleanliness, we want to seperate the routes that deal with let's say a 'user'. 
                                 <br>
@@ -94,35 +114,89 @@
                                    <br> Different purpose Routers can be established, to specify specific routes on a different file,
                                     and maintaining an easy-to-use and manage  Project structur.
                                     For this explanation, user CRUD routes have been implemented, and will be used to try and explain how to implement mvc structur.  
-                                    <br>
+                                    <br><br>
+                                    
+                                    This project, is almost Complete SSR (server-side-rendered), every page is rendered on the server and sent to client afterwards.
+                                    Further more, combined with 'express', 'ejs' framework is used for rendering.
+
+                                    <br><br>
+                                    <span class="w3-cursive">
+                                        <b>To setup a different 'view engine' with express, 
+                                            following line needs to be added inside main app file 
+                                            <br>
+                                            <span class="w3-code w3-block w3-section">
+                                                <code>
+                                                    app.set('view engine', 'ejs');
+                                                </code>
+                                            </span>
+                                            
+                                            Also on root level, a folder called views needs to be created to store all the views 
+                                            <br>(everything html related - in this case, files are saved as .ejs)
+                                        </b>
+                                    </span>
+                                </p>
+                                <div class="w3-section" style="display: flex; justify-content: center;">
+                                    <img src="project.jpg" class="w3-image w3-card-4">
+                                </div>
+
+                                <p>
+                                    The project will include these folders:
+                                        <br>-views 
+                                        <br><span class="w3-margin-left">-partials (include bits of codes that are repeated in almost every page like, nav, head and footer)</span>
+                                        <br>-public (public folder available in frontend) 
+                                        <br>-routes (include specific routes)
+                                        <br>-controllers (routes logical)
+                                        <br>-models (models for mapping from and to DB)
 
                                 </p>
+                                <div class="w3-section" style="display: flex; justify-content: center; ">
+                                    
+                                    <span>
+                                        <p>./routes/userRoute.js</p>
+                                        <img src="userRoute.jpg" class="w3-image w3-card-4">
+                                    </span>
+                                </div>
+                                <div class="">
+                                    <p>everything inside userRoute.js are exclusively user related</p>
+                                </div>
 
+                                <div class="w3-section" style="display: flex; justify-content: center;">
+                                    <span>
+                                        <p>./app.js</p>
+                                        <img src="app.jpg" class="w3-image w3-card-4">
+                                    </span>
+                                    
+                                </div>
+                                <p>in line 46 - by using a middleware and defining route url, only request for /user will get access to the user Route</p>
                             </div>
-                                <br><br>
-
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
+                               <div class="w3-container w3-section">
+                                   <p>Following link will grant access to the implemented user Crud functions, (can only be found here)</p>
+                                    <a class="w3-button w3-green w3-block" href = "/user">User management</a>
+                               </div> 
                                 
-                                
-                                <a class="w3-button w3-green w3-block" href = "/user">User management</a>
                            
-                            
-                                <br>
-                                <br>
-                                <br>
-                                
-                            
-                           
-
+                        
                             
                     </div>  
+                    <script>
+                        function toggleDiv(s){
+                            
+                            const content = document.getElementById(s)
+                            const state = content.firstElementChild;
+                            
+                           if(state.value === 'retracted'){
+                               content.classList.remove('retracted');
+                               state.value = 'expanded'
+                           }
+                           else{
+                               content.classList.add('retracted');
+                               state.value = 'retracted';
+                           }
+
+                            
+                           
+                        }
+                    </script>
                 </div> 
                 <%- include('./partials/footer.ejs') %>      
             </body>

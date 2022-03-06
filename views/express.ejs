@@ -18,7 +18,7 @@
             </style>
             <body >
                 <%- include('./partials/nav.ejs') %>
-                <div class="w3-container w3-border w3-auto w3-mobile " style="max-width:1150px; min-height:73vh;">
+                <div class="w3-container w3-border w3-auto w3-mobile " style="max-width:1150px; min-height:87vh;">
                     <div class = "w3-container w3-section">
                         <h1>Express web Framework</h1>
                         <p>Express is a easy to use web framework for NodeJs, handling the server and routes becomes easier with express</p>
@@ -33,13 +33,14 @@
                     </div> 
                     <div class="w3-panel w3-card w3-light-grey w3-margin w3-padding retracted" id="htu" >
                         <input type="hidden" value="retracted">
-                        <h2 class="w3-block w3-container" onclick="toggleDiv('htu')">How to use</h2>
+                        <h2 class="w3-block" onclick="toggleDiv('htu')">How to use</h2>
                         <p>To define and require installed package</p>
                         <div class = "w3-code"><code>const express = require('express');</code><br>
                                             <code>const app = express();</code>
                         </div>
-                        <div class="w3-panel  w3-margin">
-                            <h2>App Listener</h2>
+                        <div class="w3-panel w3-margin w3-padding w3-border w3-round retracted" id="al">
+                            <input type="hidden" value="retracted">
+                            <h2 class="w3-block w3-container" onclick="toggleDiv('al')">App Listener</h2>
                             <p>For express app to function, defining a port for the app to listen to is a must</p>
                             <div class = "w3-code"><code>app.listen(<b>PORT</b>)</code></div>
                             <p>In some situation a predefined port is not needed, but instead app will listen to the available port</p>
@@ -47,8 +48,9 @@
                                 <code>app.listen(process.env.PORT)</code>
                             </div>
                         </div>
-                        <div class="w3-panel  w3-margin">
-                            <h2>Middleware for requests /CRUD</h2>
+                        <div class="w3-panel w3-margin w3-padding w3-border  w3-round retracted" id="ep">
+                            <input type="hidden" value="retracted">
+                            <h2 class="w3-block w3-container" onclick="toggleDiv('ep')">Middleware for requests /CRUD</h2>
                             <p>To define an endpoints</p>
                             <div class = "w3-code"><code>app.get('/', (request, response) => {<br><br>
                                                             <span class="w3-cursive">//obtain request information from request parameter</span><br>
@@ -76,15 +78,17 @@
                                 <code>app.delete('/students:id', (request, response) => {console.log(request.params.id)});</code>
                             </div>
                         </div>
-                        <div class="w3-panel  w3-margin">
-                            <h2>Public Files</h2>
+                        <div class="w3-panel w3-margin w3-padding w3-border  w3-round retracted" id="pf">
+                            <input type="hidden" value="retracted">
+                            <h2 class="w3-block w3-container" onclick="toggleDiv('pf')">Public Files</h2>
                             <p>To make files available to the client with express</p>
                             <div class = "w3-code"><code>app.use(express.static('Public'))</code></div>
                             <p class="w3-section">'Public is the folder name, which is on root level'</p>
                          
                         </div>
-                        <div class="w3-panel  w3-margin">
-                            <h2>Redirect route</h2>
+                        <div class="w3-panel w3-margin w3-padding w3-border  w3-round retracted" id="rrs">
+                            <input type="hidden" value="retracted">
+                            <h2 class="w3-block w3-container" onclick="toggleDiv('rrs')">Redirect route</h2>
                             <p>To redirect to a route</p>
                             <div class = "w3-code">
                                 <code>
@@ -183,7 +187,7 @@
                             
                             const content = document.getElementById(s)
                             const state = content.firstElementChild;
-                            
+                            console.log(`running now, current state: ${state.value}`)
                            if(state.value === 'retracted'){
                                content.classList.remove('retracted');
                                state.value = 'expanded'

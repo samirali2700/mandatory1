@@ -16,6 +16,8 @@ Router.get('/update/:id', userController.user_update_get);
 Router.patch('/update/:id', userController.user_update_patch);
 Router.delete('/delete/:id', userController.user_delete);
 
+//std GET method with id = /user/{id}...anything afterward will be seen as id
+//therefor place last, after purpose route as /user/update/{id}
 Router.get('/:id', userController.user_details);
 
 //export router 

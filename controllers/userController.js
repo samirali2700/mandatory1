@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const fetch = require('fetch');
 
 
 const user_index = (req, res) =>  {
@@ -22,10 +23,11 @@ const user_create_get = (req,res) => {
 }
 
 const user_create_post = (req,res) => {
-   
+    
     const user = new User({
          firstname: req.body.firstname,
          lastname: req.body.lastname,
+         picUrl:  req.body.picUrl,
          username: req.body.username === undefined ? 'skip' : req.body.username,
          password: req.body.password === undefined ? 'skip' : req.body.username
     });

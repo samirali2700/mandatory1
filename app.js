@@ -16,10 +16,13 @@ const mongoose = require('mongoose');
 const dbURI = 'mongodb+srv://KEA:KEA123456789@node-server-db.akqbr.mongodb.net/Notebook?retryWrites=true&w=majority'
 mongoose.connect(dbURI, {useNewUrlParser:true, useUnifiedTopology:true})
     .then((result) => {
-        console.log("connected to DB: ");
-        app.listen(process.env.PORT || 7777, () => console.log("App listening on port 7777 or "+process.env.PORT));
+        console.log("connected to DB");
+        const server = app.listen(process.env.PORT || 7777, () => {
+            var port = server.address().port; 
+            console.log(`App listening on port ${port}`);
+        });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.warn(`Failed to connect to MongoDB: ${err}`));
 
     
 //set view engine to ejs 

@@ -11,6 +11,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    picUrl:{
+        type:String,
+    },
     username: {
         type: String,
         required: false

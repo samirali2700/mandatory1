@@ -4,7 +4,7 @@
             <%- include('../partials/head.ejs') %>
             <body >
                 <%- include('../partials/nav.ejs') %>
-                <div class="w3-container  w3-auto w3-mobile" style="padding:0; max-width:1150px; min-height:100vh;">
+                <div class="w3-container  w3-auto w3-mobile hero">
                    
                     <div class="w3-auto w3-container w3-section " >
                       <h1 class="w3-cursive w3-center">User Mangement</h1>
@@ -23,9 +23,14 @@
                                 <div class="w3-container w3-section">
                                     <form class="w3-container w3-section" action="/user/add" method="POST">
                                         <input class="w3-block w3-container w3-section" style="height:50px;" name="firstname" type="text" placeholder="Firstname">
-                                        <input class="w3-block w3-container w3-section " style="height:50px;" name="lastname"  type="text" placeholder="Lastname">         
+                                        <input class="w3-block w3-container w3-section " style="height:50px;" name="lastname"  type="text" placeholder="Lastname"> 
+                                        <input type="hidden" id="picUrl" name="picUrl" value="">
+                                                
                                         <button class="w3-button w3-block w3-blue" type="submit">Add</button>      
                                     </form>
+                                    <script>
+                                       
+                                    </script>
                                 </div>
                                 
 
@@ -42,10 +47,15 @@
                                 <% users.forEach(user => { %>
                                 <li class="">
                                     <div class="" style="display: flex; align-items: center; column-gap:25px;">
-
+                                    
                                         <div class="w3-block w3-half" style="width: fit-content;">
-                                            <img class= "w3-circle w3-hide-small" style="width:80px;" src="https://picsum.photos/200"/>
+                                            <img class= "w3-circle w3-hide-small pb" style="width:80px;" src="<%=user.picUrl%>"/>
                                         </div>
+                                        <script>
+                                            
+                                    
+                                            
+                                        </script>
                                         
                                         <div class="w3-block"  >
                                             <a class="" href="/user/update/<%= user.id %>" style="text-decoration: none; cursor:pointer;">
@@ -64,24 +74,33 @@
 
                             <%});} else{ %>
 
-                             <li><p>There are no user(s) found</p></li>
-                             <%}%>
-
-                                <script>
-                                    async function deleteUser(id){
-                                        
-                                        await fetch(`/user/delete/${id}`, {method:'DELETE'})
-                                        .then((result) => result.json())
-                                        .then((data) => window.location.href = data.redirect)
-                                        .catch((err) => console.warn(err));
-                                    }
-                                </script>
-                            
+                             <li><p class="w3-container w3-padding w3-large">There are no user(s) found</p></li>
+                             <%}%>    
                         </ul>
                       </div>
                   </div>
                 
                 </div> 
                 <%- include('../partials/footer.ejs') %>      
+                <script>
+                    async function getPicUrl(){
+                        
+                        await fetch('https://picsum.photos/80')
+                        .then((result) => {
+                            console.log(result.url);
+                            document.getElementById('picUrl').value = result.url;
+                        })
+                        .catch((err) => console.warn(`Failed to fetch Pic: ${err}`));
+                    }
+                    getPicUrl();
+
+                async function deleteUser(id){
+                    
+                    await fetch(`/user/delete/${id}`, {method:'DELETE'})
+                    .then((result) => result.json())
+                    .then((data) => window.location.href = data.redirect)
+                    .catch((err) => console.warn(err));
+                }
+            </script>
             </body>
         </html>

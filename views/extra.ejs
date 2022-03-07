@@ -8,8 +8,51 @@
     <div class="w3-container w3-auto w3-border hero">
 
         <h1 class="w3-padding">Extras</h1>
-        <div class="w3-panel w3-card w3-light-grey w3-margin retracted">
-            <h2 class="w3-block w3-green w3-padding">EJS(Nothing yet)</h2>
+        <div class="w3-panel w3-card w3-light-grey w3-margin retracted" id="ejs">
+            <input type="hidden" value="retracted">
+            <h2 class="w3-block w3-card-2 w3-green w3-padding" onclick="toggleDiv('ejs')">EJS</h2>
+
+            <div class="w3-panel w3-card-2  w3-light-grey w3-section w3-border w3-padding">
+                <h2>How To Use</h2>
+                <div>
+                    <p>To setup Ejs as main view engine with express</p>
+                    <div class="w3-code">
+                        <code>app.set('view engine', 'ejs);</code>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="w3-panel w3-card-2 w3-border w3-section w3-padding retracted"  id="pts">
+                <input type="hidden" value="retracted">
+                <h2 class="w3-block" onclick="toggleDiv('pts')">Ejs Partials</h2>
+                <div>
+                    <p>If one chooses to use ejs as a view engine, the files inside views folder
+                        will have to have .ejs extension to function with ejs.
+                   <br>
+                        Ejs is plain javascript that can be implemented directly inside a view file.<br>
+                        I will use the partials files (head, nav and footer), to show example of one way to use ejs.
+                    </p>
+                    <div class="w3-section" style="display: flex; justify-content: center;">
+                        <img class="w3-image" src="partialsFolder.jpg">
+                    </div>
+    
+                    <div class="w3-section" style="display: flex; justify-content: center;">
+                        <span>
+                            <p>./partials/nav.ejs</p>
+                            <img class="w3-image" src="navEjs.jpg">
+                        </span>
+                    </div>
+                    <p>
+                        Instead of redundently repeating the same code in all view files, the block of code that belongs to the nav bar
+                        will only be written in one file, in that way changes will be easy to perform, since it only requires change in one file.
+                        Instead in all other view files, a single ejs statement is enough to include the nav block of code.
+                    </p>
+                    <div class="w3-section" style="display: flex; justify-content: center;">
+                        <img src="includeEjs.jpg">
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         

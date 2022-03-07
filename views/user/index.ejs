@@ -23,17 +23,14 @@
                                 <div class="w3-container w3-section">
                                     <form class="w3-container w3-section" action="/user/add" method="POST">
                                         <input class="w3-block w3-container w3-section" style="height:50px;" name="firstname" type="text" placeholder="Firstname">
-                                        <input class="w3-block w3-container w3-section " style="height:50px;" name="lastname"  type="text" placeholder="Lastname"> 
-                                        <input type="hidden" id="picUrl" name="picUrl" value="">
-                                                
+                                        <input onfocus="getPicUrl()" class="w3-block w3-container w3-section " style="height:50px;" name="lastname"  type="text" placeholder="Lastname"> 
+                                        
+                                        <input type="hidden" id="picUrl" name="picUrl" value="" >
+                                               
                                         <button class="w3-button w3-block w3-blue" type="submit">Add</button>      
-                                    </form>
-                                    <script>
-                                       
-                                    </script>
+                                    </form>   
                                 </div>
                                 
-
                           </div>
                         </div>
 
@@ -50,15 +47,9 @@
                                     
                                         <div class="w3-block w3-half" style="width: fit-content;">
                                             <img class= "w3-circle w3-hide-small pb" style="width:80px;" src="<%=user.picUrl%>"/>
-                                        </div>
-                                        <script>
-                                            
-                                    
-                                            
-                                        </script>
-                                        
+                                        </div>                                
                                         <div class="w3-block"  >
-                                            <a class="" href="/user/update/<%= user.id %>" style="text-decoration: none; cursor:pointer;">
+                                            <a href="/user/update/<%= user.id %>" style="text-decoration: none; cursor:pointer;">
                                             <span class="w3-large"><%=user.firstname%></span> <br>
                                             <span ><%=user.lastname %></span>
                                             </a>
@@ -82,25 +73,6 @@
                 
                 </div> 
                 <%- include('../partials/footer.ejs') %>      
-                <script>
-                    async function getPicUrl(){
-                        
-                        await fetch('https://picsum.photos/80')
-                        .then((result) => {
-                            console.log(result.url);
-                            document.getElementById('picUrl').value = result.url;
-                        })
-                        .catch((err) => console.warn(`Failed to fetch Pic: ${err}`));
-                    }
-                    getPicUrl();
-
-                async function deleteUser(id){
-                    
-                    await fetch(`/user/delete/${id}`, {method:'DELETE'})
-                    .then((result) => result.json())
-                    .then((data) => window.location.href = data.redirect)
-                    .catch((err) => console.warn(err));
-                }
-            </script>
+                <script src="scripts.js"></script>
             </body>
         </html>

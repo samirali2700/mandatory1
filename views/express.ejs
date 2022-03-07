@@ -170,24 +170,9 @@
                             
                     </div>  
                     <script>
-                        function toggleDiv(s){
-                            
-                            const content = document.getElementById(s)
-                            const state = content.firstElementChild;
-                            console.log(`running now, current state: ${state.value}`)
-                           if(state.value === 'retracted'){
-                               content.classList.remove('retracted');
-                               state.value = 'expanded'
-                           }
-                           else{
-                               content.classList.add('retracted');
-                               state.value = 'retracted';
-                           }
-
-                            
-                           
-                        }
+                     
                     </script>
+                    <script src="scripts.js"></script>
                 </div> 
                 <%- include('./partials/footer.ejs') %>      
             </body>
